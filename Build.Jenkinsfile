@@ -35,9 +35,14 @@ pipeline {
             steps {
                 sh "sudo docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
                 sh "sudo docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
-                withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-                sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
+                // withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+                // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
                 }
+                sh """
+                   sudo docker login -u ushakiran20 -p ${docker-hub-credentials}
+                   sudo docker push ${dockerPublisherName}/${dockerRepoName}
+
+                """
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
             }
         }
