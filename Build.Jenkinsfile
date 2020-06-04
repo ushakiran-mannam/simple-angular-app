@@ -39,7 +39,7 @@ pipeline {
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
                 
                 sh """
-                   sudo docker login -u ushakiran20 -p ${docker-hub-credentials}
+                   sudo docker login -u ushakiran20 -p asthalin8
                    sudo docker push ${dockerPublisherName}/${dockerRepoName}
 
                 """
