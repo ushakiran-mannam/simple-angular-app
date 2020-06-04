@@ -38,13 +38,13 @@ pipeline {
             }
         }
 
-        // stage('Publish') {
-        //     steps {
-        //         sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
-        //         sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
-        //         sh "docker push ${dockerPublisherName}/${dockerRepoName}"
-        //     }
-        // }
+        stage('Publish') {
+            steps {
+                sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
+                sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
+                sh "docker push ${dockerPublisherName}/${dockerRepoName}"
+            }
+        }
 
         // Clean the system
         // stage('Clean') {
