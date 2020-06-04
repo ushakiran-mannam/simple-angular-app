@@ -37,7 +37,7 @@ pipeline {
                 sh "sudo docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
                 // withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
-                }
+                
                 sh """
                    sudo docker login -u ushakiran20 -p ${docker-hub-credentials}
                    sudo docker push ${dockerPublisherName}/${dockerRepoName}
