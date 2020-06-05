@@ -37,6 +37,10 @@ pipeline {
                 sh "sudo docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
                 // withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
+                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+
+                sh "echo uname=$USERNAME pwd=$PASSWORD"
                 
                 sh """
                    sudo docker login -u ushakiran20 -p asthalin8
