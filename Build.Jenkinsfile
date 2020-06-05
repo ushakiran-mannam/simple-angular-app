@@ -33,8 +33,8 @@ pipeline {
 
         stage('Publish') {
             steps {
-                sh "sudo docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
-                sh "sudo docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
+                sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
+                sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
                 // withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
@@ -42,8 +42,8 @@ pipeline {
 
                 sh """
                     echo uname=$USERNAME pwd=$PASSWORD
-                    sudo docker login -u $USERNAME -p $PASSWORD
-                    sudo docker push ${dockerPublisherName}/${dockerRepoName}
+                    docker login -u $USERNAME -p $PASSWORD
+                    docker push ${dockerPublisherName}/${dockerRepoName}
 
                     """
                 }
