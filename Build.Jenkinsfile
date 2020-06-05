@@ -47,13 +47,6 @@ pipeline {
 
                     """
                 }
-                
-                // sh """
-                //    sudo docker login -u ushakiran20 -p asthalin8
-                   
-
-                // """
-                // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
             }
         }
 
