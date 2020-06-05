@@ -41,6 +41,7 @@ pipeline {
                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 
                 sh "echo uname=$USERNAME pwd=$PASSWORD"
+                }
                 
                 sh """
                    sudo docker login -u ushakiran20 -p asthalin8
