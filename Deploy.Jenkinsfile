@@ -5,7 +5,7 @@ def dockerPublisherName = "ushakiran20"
 def dockerRepoName = "simple-angular-app"
 
 // Pipeline Triggers
-properties([pipelineTriggers([upstream(threshold: 'UNSTABLE', upstreamProjects: 'sample-angular-app')])])
+properties([pipelineTriggers([upstream(threshold: 'UNSTABLE', upstreamProjects: 'second-angular-app')])])
 
 pipeline {
     
