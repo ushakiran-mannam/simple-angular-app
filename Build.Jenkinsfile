@@ -43,15 +43,16 @@ pipeline {
                 sh """
                     echo uname=$USERNAME pwd=$PASSWORD
                     sudo docker login -u $USERNAME -p $PASSWORD
+                    sudo docker push ${dockerPublisherName}/${dockerRepoName}
 
                     """
                 }
                 
-                sh """
+                // sh """
                 //    sudo docker login -u ushakiran20 -p asthalin8
-                   sudo docker push ${dockerPublisherName}/${dockerRepoName}
+                   
 
-                """
+                // """
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
             }
         }
