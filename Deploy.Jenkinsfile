@@ -20,7 +20,6 @@ pipeline {
     stages {
        
         stage('Deploy') {
-            .
             steps {
                 sh """
                     docker service rm simple-ng-service  || true
