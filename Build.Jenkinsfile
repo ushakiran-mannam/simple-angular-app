@@ -40,11 +40,15 @@ pipeline {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 
-                sh "echo uname=$USERNAME pwd=$PASSWORD"
+                sh """
+                    echo uname=$USERNAME pwd=$PASSWORD
+                    sudo docker login -u $USERNAME -p $PASSWORD
+
+                    """
                 }
                 
                 sh """
-                   sudo docker login -u ushakiran20 -p asthalin8
+                //    sudo docker login -u ushakiran20 -p asthalin8
                    sudo docker push ${dockerPublisherName}/${dockerRepoName}
 
                 """
