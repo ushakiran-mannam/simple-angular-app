@@ -2,7 +2,7 @@
 
 // Docker 
 def dockerPublisherName = "ushakiran20"
-def dockerRepoName = "simple-angular-app"
+def dockerRepoName = "simple-angular-app-mac"
 
 
 def LocalImage = "sample-ng-app-image"
@@ -15,7 +15,7 @@ pipeline {
     agent {
         
         node {
-            label 'aws_node_two'
+            label 'kubepods'
         }
     }
 
@@ -37,7 +37,7 @@ pipeline {
                 sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
                 // withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-creds',
                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 
                 sh """
