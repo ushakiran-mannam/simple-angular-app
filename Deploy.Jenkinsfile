@@ -2,7 +2,7 @@
 
 
 def dockerPublisherName = "ushakiran20"
-def dockerRepoName = "simple-angular-app"
+def dockerRepoName = "simple-angular-app-mac"
 
 // Pipeline Triggers
 properties([pipelineTriggers([upstream(threshold: 'UNSTABLE', upstreamProjects: 'second-angular-app')])])
@@ -12,7 +12,7 @@ pipeline {
     agent {
         
         node {
-            label 'aws_node_two'
+            label 'kubepods'
         }
     }
 
