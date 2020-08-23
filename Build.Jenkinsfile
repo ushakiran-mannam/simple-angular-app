@@ -23,7 +23,6 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh "sudo apt-get install npm"
                 sh "npm install"
                 sh "npm run build"
                 sh "pwd"
