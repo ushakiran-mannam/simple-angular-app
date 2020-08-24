@@ -30,10 +30,12 @@ pipeline {
                 sh "npm run build"
                 sh "pwd"
                 sh "ls dist/sample-ng-app/"
+              }
+              container('jenkins-aws'){
                 s3upload('dist/sample-ng-app/index.html','mytestbucket-jenkins')
-                
+              }
                // sh "docker build -t ${LocalImage} ."
-                }
+                
                 
             }
         }
