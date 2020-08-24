@@ -27,7 +27,7 @@ pipeline {
                 sh "npm install"
                 sh "npm run build"
                 sh "pwd"
-                sh "ls dist/"
+                sh "ls dist/sample-ng-app/"
                // sh "docker build -t ${LocalImage} ."
                 }
                 
