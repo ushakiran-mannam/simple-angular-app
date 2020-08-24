@@ -1,4 +1,6 @@
+#!/usr/bin/env groovy
 
+@Library('shared-library-s3@master') _
 
 // Docker 
 def dockerPublisherName = "ushakiran20"
@@ -28,6 +30,8 @@ pipeline {
                 sh "npm run build"
                 sh "pwd"
                 sh "ls dist/sample-ng-app/"
+                s3upload('dist/sample-ng-app/index.html','mytestbucket-jenkins')
+                
                // sh "docker build -t ${LocalImage} ."
                 }
                 
