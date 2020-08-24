@@ -23,10 +23,12 @@ pipeline {
         
         stage('Build') {
             steps {
+              container('jenkins-node'){
                 sh "npm install"
                 sh "npm run build"
                 sh "pwd"
                 sh "docker build -t ${LocalImage} ."
+                }
                 
             }
         }
