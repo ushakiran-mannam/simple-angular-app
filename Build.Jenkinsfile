@@ -27,30 +27,31 @@ pipeline {
                 sh "npm install"
                 sh "npm run build"
                 sh "pwd"
-                sh "docker build -t ${LocalImage} ."
+                sh "ls dist"
+               // sh "docker build -t ${LocalImage} ."
                 }
                 
             }
         }
 
-        stage('Publish') {
-            steps {
-                sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
-                sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
+        //stage('Publish') {
+          //  steps {
+            //    sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:v-0.0.${BUILD_NUMBER}"
+              //  sh "docker tag ${LocalImage} ${dockerPublisherName}/${dockerRepoName}:latest"
                 // withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
                 // sh "sudo docker push ${dockerPublisherName}/${dockerRepoName}"
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-creds',
-                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-
-                sh """
-                    echo uname=$USERNAME pwd=$PASSWORD
-                    docker login -u $USERNAME -p $PASSWORD
-                    docker push ${dockerPublisherName}/${dockerRepoName}
-
-                    """
-                }
-            }
-        }
+         //       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-creds',
+         //       usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+         //
+         //       sh """
+         //           echo uname=$USERNAME pwd=$PASSWORD
+         //           docker login -u $USERNAME -p $PASSWORD
+         //           docker push ${dockerPublisherName}/${dockerRepoName}
+         //
+         //           """
+         //       }
+         //   }
+      //  }
 
     }
 }
